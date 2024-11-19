@@ -13,7 +13,50 @@
             <javadoc xml:space="preserve">Act - do whatever the Hero wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
             <params/>
             <throws/>
-            <body/>
+            <body>
+                <call expression="moveAround()" expression-java="moveAround()" enable="true"/>
+            </body>
+        </method>
+        <method access="private" type="void" type-java="void" name="checkCollision" enable="true">
+            <javadoc xml:space="preserve">Check whether we are colliding with an CannonBall</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Actor" type-java="Actor" name="Ladybug" value="(Ladybug)getOneIntersectingObject(Ladybug.class)" value-java="(Ladybug)getOneIntersectingObject(Ladybug.class)" enable="true"/>
+                <if condition="Ladybug!=null" condition-java="Ladybug != null" enable="true">
+                    <ifStatements>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <call expression="world.removeObject(Ladybug)" expression-java="world.removeObject(Ladybug)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="moveAround" enable="true">
+            <javadoc xml:space="preserve">Move Around</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="Greenfoot.isKeyDown(&quot;W&quot;)" condition-java="Greenfoot.isKeyDown(&quot;W&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="move(3)" expression-java="move(3)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;S&quot;)" condition-java="Greenfoot.isKeyDown(&quot;S&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="move(-3)" expression-java="move(-3)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;A&quot;)" condition-java="Greenfoot.isKeyDown(&quot;A&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(3)" expression-java="turn(3)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;D&quot;)" condition-java="Greenfoot.isKeyDown(&quot;D&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(-3)" expression-java="turn(-3)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
         </method>
     </methods>
 </class>

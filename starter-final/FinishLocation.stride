@@ -13,7 +13,48 @@
             <javadoc xml:space="preserve">Act - do whatever the FinishLocation wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
             <params/>
             <throws/>
-            <body/>
+            <body>
+                <call expression="CheckCollision()" expression-java="CheckCollision()" enable="true"/>
+            </body>
+        </method>
+        <method access="private" type="void" type-java="void" name="CheckCollision" enable="true">
+            <javadoc xml:space="preserve">Check whether we are colliding with a Ladybug</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Actor" type-java="Actor" name="Ladybug" value="(Ladybug)getOneIntersectingObject(Ladybug.class)" value-java="(Ladybug)getOneIntersectingObject(Ladybug.class)" enable="true"/>
+                <if condition="Ladybug!=null" condition-java="Ladybug != null" enable="true">
+                    <ifStatements>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <call expression="world.removeObject(Ladybug)" expression-java="world.removeObject(Ladybug)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="boolean" type-java="boolean" name="isGameWon" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                <if condition="world.getObjects(Ladybug.class).isEmpty()" condition-java="world.getObjects(Ladybug.class).isEmpty()" enable="true">
+                    <ifStatements>
+                        <return value="true" value-java="true" enable="true"/>
+                    </ifStatements>
+                    <else>
+                        <return value="false" value-java="false" enable="true"/>
+                    </else>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="transitionToGameWonWorld" enable="true">
+            <javadoc xml:space="preserve">This will transition to tje GameWonWorld if you win</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="gameWonWorld" value="new GameWonWorld()" value-java=" new GameWonWorld()" enable="true"/>
+                <call expression="Greenfoot.setWorld(gameWonWorld)" expression-java="Greenfoot.setWorld(gameWonWorld)" enable="true"/>
+            </body>
         </method>
     </methods>
 </class>
